@@ -20,7 +20,7 @@ if not os.path.isfile("5.txt"):
         file.close()
 
 # Read file
-with open("5.txt", "r") as file:
+with open("5.txt", "rb") as file:
     read_file = file.read()
 
 data = pickle.loads(read_file)
