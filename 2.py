@@ -36,3 +36,5 @@ print(counts)
 
 # Only print rare char
 print("Answer: {0}".format(''.join(re.findall('[a-z]', data))))
+
+file.close()
