@@ -3,7 +3,7 @@ __author__ = 'root'
 import urllib3
 import os
 import re
-
+from collections import Counter
 
 def download(src):
     http = urllib3.PoolManager()
@@ -26,11 +26,22 @@ with open("2.txt", "r") as file:
 # Get mess below
 data = re.findall('<!--(.+?)-->', read_file, re.S)[-1]
 
+
+'''
+Normal Cunter
+'''
 # Count char
-counts = {}
-for char in data:
-    counts[char] = counts.get(char, 0) + 1
-print(counts)
+# counts = {}
+# for char in data:
+#     counts[char] = counts.get(char, 0) + 1
+# print(counts)
+
+'''
+Use Collection Counter
+'''
+data_dict = dict(Counter(data))
+print(data_dict)
+
 
 # Only print rare char
 print("Answer: {0}".format(''.join(re.findall('[a-z]', data))))
