@@ -7,9 +7,8 @@ import re
 
 def download(src):
     http = urllib3.PoolManager()
-    request_data = http.urlopen('GET', src)
-    request_data.close()
-    return request_data
+    with http.urlopen('GET', src) as request_data:
+        return request_data
 
 # Write file
 if not os.path.isfile("2.txt"):
@@ -19,7 +18,6 @@ if not os.path.isfile("2.txt"):
     request = download("http://www.pythonchallenge.com/pc/def/ocr.html")
     with open("2.txt", "wb") as file:
         file.write(request.data)
-        file.close()
 
 # Read file
 with open("2.txt", "r") as file:
@@ -37,4 +35,3 @@ print(counts)
 # Only print rare char
 print("Answer: {0}".format(''.join(re.findall('[a-z]', data))))
 
-file.close()

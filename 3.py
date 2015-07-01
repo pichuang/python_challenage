@@ -7,9 +7,8 @@ import os
 
 def download(src):
     http = urllib3.PoolManager()
-    request_data = http.urlopen('GET', src)
-    request_data.close()
-    return request_data
+    with http.urlopen('GET', src) as request_data:
+        return request_data
 
 # Write file
 if not os.path.isfile("3.txt"):
@@ -19,7 +18,6 @@ if not os.path.isfile("3.txt"):
     request = download("http://www.pythonchallenge.com/pc/def/equality.html")
     with open("3.txt", "wb") as file:
         file.write(request.data)
-        file.close()
 
 # Read file
 with open("3.txt", "r") as file:
@@ -40,5 +38,3 @@ qKWGtIDCj
 """
 data = re.findall('[^A-Z][A-Z]{3}([a-z])[A-Z]{3}[^A-Z]', read_file)
 print("Answer: {0}".format(''.join(data)))
-
-file.close()

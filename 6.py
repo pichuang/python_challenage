@@ -8,9 +8,8 @@ import re
 
 def download(src):
     http = urllib3.PoolManager()
-    request_data = http.urlopen('GET', src)
-    request_data.close()
-    return request_data
+    with http.urlopen('GET', src) as request_data:
+        return request_data
 
 # Check zipfile
 if not os.path.isfile("6.zip"):
@@ -20,14 +19,12 @@ if not os.path.isfile("6.zip"):
     request = download("http://www.pythonchallenge.com/pc/def/channel.zip")
     with open("6.zip", "wb") as file:
         file.write(request.data)
-        file.close()
 
 # Check dir
 if not os.path.isdir("6"):
     print("6.zip is not extract to be directory")
     with zipfile.ZipFile('6.zip', 'r') as z:
         z.extractall("./6/")
-        z.close()
 
 
 def next_file(num):

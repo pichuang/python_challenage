@@ -10,9 +10,8 @@ import time
 
 def download(src):
     http = urllib3.PoolManager()
-    request_data = http.urlopen('GET', src)
-    request_data.close()
-    return request_data
+    with http.urlopen('GET', src) as request_data:
+        return request_data
 
 # Check zipfile
 if not os.path.isfile("7.png"):
@@ -22,7 +21,6 @@ if not os.path.isfile("7.png"):
     request = download("http://www.pythonchallenge.com/pc/def/oxygen.png")
     with open("7.png", "wb") as file:
         file.write(request.data)
-        file.close()
 
 # Open image
 im = Image.open('7.png')

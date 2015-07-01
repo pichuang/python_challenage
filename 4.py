@@ -8,9 +8,8 @@ import re
 def download(num):
     http = urllib3.PoolManager()
     src = "http://www.pythonchallenge.com/pc/def/linkedlist.php?nothing=" + str(num)
-    request_data = http.urlopen('GET', src)
-    request_data.close()
-    return request_data
+    with http.urlopen('GET', src) as request_data:
+        return request_data
 
 
 def parse(web_str):
