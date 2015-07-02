@@ -7,7 +7,7 @@ import bz2
 
 def download(src):
     http = urllib3.PoolManager()
-    with http.urlopen('GET', src) as request_data
+    with http.urlopen('GET', src) as request_data:
         return request_data
 
 # Write file
