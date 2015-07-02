@@ -8,6 +8,7 @@ https://oeis.org/search?q=1%2C+11%2C+21%2C+1211%2C+111221&language=english&go=Se
 
 def A005150(n):
     seq = [1] + [None] * (n - 1) # allocate entire array space
+
     def say(s):
         acc = '' # initialize accumulator
         while len(s) > 0:
