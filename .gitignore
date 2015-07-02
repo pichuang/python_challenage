@@ -5,3 +5,5 @@ python-challenge/
 *.png
 .DS_Store
 *.jpg
+*.gfx
+*.gif
