@@ -3,3 +3,5 @@
 *.zip
 python-challenge/
 *.png
+.DS_Store
+*.jpg
