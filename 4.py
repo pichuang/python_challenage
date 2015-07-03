@@ -1,39 +1,47 @@
 __author__ = 'root'
 
-
-import urllib3
+import requests
 import re
 
 
-def download(num):
-    http = urllib3.PoolManager()
-    src = "http://www.pythonchallenge.com/pc/def/linkedlist.php?nothing=" + str(num)
-    with http.urlopen('GET', src) as request_data:
-        return request_data
-
-
-def parse(web_str):
-    num = ''.join(re.findall(r'and the next nothing is (\d+)', web_str))
-    if not num:
-        print(web_str)
-        exit(0)
-    return num
+ACCOUNT = "huge"
+PASSWORD = "file"
 
 
 def next_page(num):
-    num = parse(download(number).data)
-    return num
+    src = "http://www.pythonchallenge.com/pc/def/linkedlist.php?nothing={number}".format(number=num)
+    request_data = requests.get(src, auth=(ACCOUNT, PASSWORD))
+    return request_data
 
-# First number
-# number = 12345
 
-# Yes. Divide by two and keep going
-# number =16044
+def get_number(data):
+    number_value = re.compile("and the next nothing is (\d+)")
+    number = number_value.search(data.text).group(1)
+    return number
 
-# 8022 = 16044 // 2
-number = 8022
-i = 0
+
+print("Phase 1")
+number = "12345"
 while True:
-    number = next_page(number)
-    i += 1
-    print("{0} {1}".format(i, number))
+    # Get number and change to next page
+    request_data = next_page(number)
+    try:
+        number = get_number(request_data)
+        print("Got number {0}".format(number))
+    except:
+        break
+print(next_page(number).text)  # Yes. Divide by two and keep going
+
+
+print("Phase 2")
+number = int(number)  # str to int
+number //= 2  # 8022 = 16044 // 2
+
+while True:
+    request_data = next_page(number)
+    try:
+        number = get_number(request_data)
+        print("Got number {0}".format(number))
+    except:
+        break
+print("Answer: {0}".format(next_page(number).text))  # peak.html

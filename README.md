@@ -3,7 +3,6 @@ Try to use python3 to complete Python Challenge
 
 XXX Challenge
 =============
-- 4
 - 14
 
 TODO
