@@ -18,4 +18,4 @@ method = phonebook.system.listMethods()[0]
 
 print(phonebook.system.methodHelp(method))
 print(phonebook.system.methodSignature(method))
-print(phonebook.phone("Bert"))  # "Bert is evil", level 12
+print(phonebook.phone("Bert"))  # "Bert is evil", depends on level 12
