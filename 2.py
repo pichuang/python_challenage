@@ -39,8 +39,8 @@ Normal Cunter
 '''
 Use Collection Counter
 '''
-data_dict = dict(Counter(data))
-print(data_dict)
+#data_dict = dict(Counter(data))
+#print(data_dict)
 
 
 # Only print rare char

@@ -36,5 +36,11 @@ gZAGiLQZx
 vCJAsACFl
 qKWGtIDCj
 """
-data = re.findall('[^A-Z][A-Z]{3}([a-z])[A-Z]{3}[^A-Z]', read_file)
-print("Answer: {0}".format(''.join(data)))
+
+data = re.findall('([a-z]|\s)[A-Z]{3}([a-z])[A-Z]{3}([a-z]|\s)', read_file)
+
+result = []
+for c in data:
+    result.append(c[1])
+answer = ''.join(result)
+print("Answer: {0}".format(answer))
