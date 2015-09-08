@@ -28,8 +28,8 @@ while True:
     try:
         number = get_number(request_data)
         print("Got number {0}".format(number))
-    except:
-        break
+    except Exception as e:
+        print("Error '{0}' occured. Arguments {1}.".format(e.message, e.args))
 print(next_page(number).text)  # Yes. Divide by two and keep going
 
 
@@ -42,6 +42,6 @@ while True:
     try:
         number = get_number(request_data)
         print("Got number {0}".format(number))
-    except:
-        break
+    except Exception as e:
+        print("Error '{0}' occured. Arguments {1}.".format(e.message, e.args))
 print("Answer: {0}".format(next_page(number).text))  # peak.html

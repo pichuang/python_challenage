@@ -68,8 +68,8 @@ while True:
     try:
         number = number_value.search(request_data.text).group(1)
         logger.debug(number)
-    except:
-        break
+    except Exception as e:
+        logger.info("Error '{0}' occured. Arguments {1}.".format(e.message, e.args))
 
     src = "http://www.pythonchallenge.com/pc/def/linkedlist.php?busynothing={number}".format(number=number)
 
