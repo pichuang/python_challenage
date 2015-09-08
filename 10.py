@@ -11,7 +11,7 @@ def A005150(n):
 
     def say(s):
         acc = '' # initialize accumulator
-        while len(s) > 0:
+        while s:
             i = 0
             c = s[0]  # char of first run
             while i < len(s) and s[i] == c:  # scan first digit run
